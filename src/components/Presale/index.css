@@ -98,17 +98,20 @@
   color: #2a2a58;
 }
 .claim-honey-holder {
-  width: max-content;
+  width: 100%;
+  text-align: center;
 }
 .claim-honey {
-  max-width: 95%;
+  text-align: center;
+  min-width: 100%;
   margin-top: 10px;
   background: rgba(247, 132, 6, 0.5);
   border-radius: 34px;
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
-  padding: 18px 225.656px 18px 224.094px;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
   font-family: "DM Sans";
   font-style: normal;
   font-weight: 700;
@@ -200,4 +203,203 @@
   border-radius: 50px;
   min-width: 100%;
   min-height: 48px;
+}
+@media screen and (max-width: 780px) {
+  .presale-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+    margin-bottom: 100px;
+  }
+  .presale-title {
+    font-family: "Mitr";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 100%;
+    /* identical to box height, or 64px */
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+  }
+
+  .presale-card {
+    background: #ffe5aa;
+    box-shadow: 0px 0px 21px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    width: 80vw;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    gap: 40px;
+  }
+  .presale-card-left {
+    min-width: 45%;
+    min-height: 80%;
+  }
+  .presale-card-left-top {
+    min-width: 40%;
+    min-height: 35%;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 10px;
+    text-align: center;
+  }
+  .presale-card-left-top-1 {
+    background: #deb597;
+    border-radius: 10px;
+    min-width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 5px;
+  }
+  .presale-card-left-top-1-title {
+    font-family: "Mitr";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    /* identical to box height, or 133% */
+
+    color: #9a6d4a;
+  }
+  .presale-card-left-top-1-content {
+    font-family: "Mitr";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 24px;
+    /* identical to box height, or 100% */
+    color: #2a2a58;
+  }
+  .presale-card-left-top-2 {
+    background: #deb597;
+    border-radius: 10px;
+    min-width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  .presale-card-left-top-2-title {
+    font-family: "Mitr";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    /* identical to box height, or 133% */
+
+    color: #9a6d4a;
+  }
+  .presale-card-left-top-2-content {
+    font-family: "Mitr";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 24px;
+    /* identical to box height, or 100% */
+    color: #2a2a58;
+  }
+  .claim-honey-holder {
+    width: 100%;
+  }
+
+  .presale-card-right {
+    max-width: 80vw;
+    padding: 25px;
+    background: #deb597;
+    border-radius: 10px;
+  }
+  .presale-card-right-top {
+    display: flex;
+    flex-direction: column;
+    min-height: 40%;
+    justify-content: space-between;
+  }
+  .presale-card-right-top-contribute {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    font-family: "Mitr";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    /* identical to box height, or 133% */
+    color: #9a6d4a;
+  }
+  .presale-card-right-top-balance {
+    font-family: "Mitr";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    /* identical to box height, or 120% */
+    font-weight: 700;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: #2a2a58;
+  }
+
+  .presale-card-right-bottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 60%;
+  }
+  .presale-card-right-bottom-form {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .presale-card-right-bottom-input {
+    box-sizing: border-box;
+    margin-top: 10px;
+    width: 100%;
+    height: 50px;
+    left: 20px;
+    top: 113px;
+    background: #ffffff;
+    border: 1px solid #ef798a;
+    border-radius: 10px;
+  }
+
+  .presale-card-right-bottom-max {
+    font-family: "Mitr";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    color: #2a2a58;
+    background: linear-gradient(0deg, #f78406, #f78406), #ffffff;
+    border-radius: 10px;
+    position: absolute;
+    margin-top: 10px;
+    z-index: 1;
+    width: 102px;
+    height: 50px;
+  }
+
+  .presale-card-right-bottom-button {
+    margin-top: 15px;
+    background: #f78406;
+    border-radius: 50px;
+    min-width: 100%;
+    min-height: 48px;
+    color: #2a2a58;
+    font-family: "Mitr";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+  }
 }
