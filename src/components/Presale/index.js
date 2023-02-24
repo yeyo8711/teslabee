@@ -7,7 +7,7 @@ import TokenAbi from "../../blockchain/abi/TokenAbi.json";
 //import { TokenSale } from "../../blockchain/address";
 import { formatEther, parseEther } from "ethers";
 
-const TokenSaleAddress = "0x68030893740F1abD7716d030816588528B6b5225";
+const TokenSaleAddress = "0xc4d79411B777887610a7FA2183E484A253C24dFc";
 const TokenAddress = "0xddcd1D04501f145a25160F85734Add4BBa521c55";
 
 const Presale = () => {
@@ -83,16 +83,74 @@ const Presale = () => {
       });
   };
 
+  const getClaimEnabled = async () => {
+    return presaleContract
+      .claimEnabled()
+      .call()
+      .then((res) => {
+        console.log("res", res);
+        return res;
+      });
+  };
+
+  const claimTokens = async () => {
+
+    const claimEnabled = await getClaimEnabled();
+
+    if (!claimEnabled) {
+      toast.error("Claiming is not enabled yet");
+      return;
+    }
+
+    presaleContract
+      .claimTokens()
+      .send({ from: account })
+      .then(async (res) => {
+        console.log("res", res);
+        toast.success("Tokens claimed successfully");
+        await updatePresaleStatus();
+      });
+  };
+
+  const isWhitelistEnabled = async () => {
+    return presaleContract
+      .isWhitelistEnabled()
+      .call()
+      .then((res) => {
+        console.log("res", res);
+        return res;
+      });
+  };
+
+
+  const isAccountWhitelisted = async () => {
+    return presaleContract
+      .whitelist(account)
+      .call()
+      .then((res) => {
+        console.log("res", res);
+        return res;
+      });
+  };
+
+  const getMinBuyAmount = async () => {
+    return presaleContract
+      .minBuy()
+      .call()
+      .then((res) => {
+        console.log("getMinBuyAmount", res);
+        return res;
+      });
+  };
+
   const calculateRemainingTime = () => {
-    const now = new Date().getTime();
-    const distance = endTime - now;
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor(
-      (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-    );
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    setRemainingTime(`${days}d ${hours}h ${minutes}m ${seconds}s`);
+    const remainingTime = endTime - Math.floor(Date.now() / 1000);
+    // convert remainingTime to days, hours, minutes, seconds
+    const days = Math.floor(remainingTime / (24 * 60 * 60));
+    const hours = Math.floor((remainingTime % (24 * 60 * 60)) / (60 * 60));
+    const minutes = Math.floor((remainingTime % (60 * 60)) / 60);
+    const seconds = Math.floor(remainingTime % 60);
+    setRemainingTime(days + "d " + hours + "h " + minutes + "m " + seconds + "s");
   };
 
   const buyTokens = async () => {
@@ -108,6 +166,28 @@ const Presale = () => {
     }
     */
 
+    // check if whitelist is enabled
+    const whitelistEnabled = await isWhitelistEnabled();
+
+    if (whitelistEnabled) {
+      // check if account is whitelisted
+      const accountWhitelisted = await isAccountWhitelisted();
+      if (!accountWhitelisted) {
+        toast.error("Account is not whitelisted");
+        return;
+      }
+    }
+
+    const minBuyAmount = await getMinBuyAmount();
+
+    // check buyEthAmount is more than minBuyAmount
+    console.log("formatEther(buyEthAmount)", parseEther(buyEthAmount.toString()));
+    console.log("minBuyAmount", minBuyAmount);
+    if (parseEther(buyEthAmount) < minBuyAmount) {
+      toast.error("Eth amount should be more than " + formatEther(minBuyAmount));
+      return;
+    }
+
     // check if user have enough eth
     const ethBalance = await library.eth.getBalance(account);
     if (formatEther(ethBalance) < buyEthAmount) {
@@ -115,18 +195,21 @@ const Presale = () => {
       return;
     }
 
+
     presaleContract
       .buyTokens()
       .send({ from: account, value: parseEther(buyEthAmount).toString() })
       .then(async (res) => {
         console.log("res", res);
         toast.success("Tokens bought successfully");
+        setBuyEthAmount("0");
         await updatePresaleStatus();
       })
       .catch((err) => {
         console.log("err", err);
         toast.error(err.message);
       });
+
   };
 
   const getMaxEthContribution = async () => {
@@ -215,7 +298,7 @@ const Presale = () => {
           </div>
           <div className='presale-card-left-bottom'></div>
           <div className='claim-honey-holder'>
-            <button className='claim-honey'>Claim Honey</button>
+            <button className='claim-honey' onClick={claimTokens}>Claim Honey</button>
           </div>
         </div>
         <div className='presale-card-right'>
