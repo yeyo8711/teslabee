@@ -7,3 +7,8 @@ body {
   background-color: #da835b;
   font-family: "Mitr", sans-serif;
 }
+@media screen and (max-width: 780px) {
+  body {
+    width: 90vw;
+  }
+}
