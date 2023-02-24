@@ -1,0 +1,87 @@
+.honey-main {
+  display: flex;
+  flex-direction: column;
+}
+.honey-title {
+  font-family: "Mitr";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 100%;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.honey-main-container {
+  display: flex;
+  flex-direction: row;
+  min-height: 80%;
+  justify-content: space-around;
+}
+.honey-image {
+  max-width: 570px;
+  max-height: 615px;
+  border-radius: 20px;
+}
+.honey-card {
+  color: #2d344a;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 570px;
+  max-height: 615px;
+  padding: 20px;
+  background-color: #fde7aa;
+  box-shadow: 10px 4px 21px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  backdrop-filter: blur(2px);
+}
+.honey-text {
+  width: 490px;
+  font-family: "Mitr";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 150%;
+  padding: 35px;
+
+  /* or 24px */
+}
+.honey-buttons {
+  display: flex;
+  flex-direction: row;
+  margin: 20px;
+  justify-content: space-around;
+}
+.honey-btn {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 12px;
+  padding: 18px 23.875px 18px 24px;
+  color: #1b2236;
+  background: rgba(255, 255, 255, 0.002);
+  box-shadow: inset 0px 0px 0px 2px #ffd166;
+  border-radius: 32px;
+}
+.honey-gethoney-btn-holder {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.honey-gethoney-btn {
+  width: 80%;
+  font-family: "Mitr";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  border-radius: 50px;
+  height: 60px;
+  padding: 8px;
+  color: #2a2a58;
+  background: linear-gradient(0deg, #f68402, #f68402), #ffffff;
+}
