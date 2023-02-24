@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import TokenSaleAbi from "../../blockchain/abi/TokenSale.json";
 import TokenAbi from "../../blockchain/abi/TokenAbi.json";
 //import { TokenSale } from "../../blockchain/address";
-import { formatEther } from "ethers";
+import { formatEther, parseEther } from "ethers";
 
 const TokenSaleAddress = "0x68030893740F1abD7716d030816588528B6b5225";
 const TokenAddress = "0xddcd1D04501f145a25160F85734Add4BBa521c55";
@@ -14,12 +14,13 @@ const Presale = () => {
   const { active, account, library, activate, deactivate, chainId } =
     useWeb3React();
 
-  const [tokensPerEth, setTokensPerEth] = useState(0);
-  const [endTime, setEndTime] = useState(0);
-  const [remainingTime, setRemainingTime] = useState(0);
-  const [totalEth, setTotalEth] = useState(0);
-  const [tokenBalances, setTokenBalances] = useState(0);
-  const [tokenBalance, setTokenBalance] = useState(0);
+  const [tokensPerEth, setTokensPerEth] = useState(0)
+  const [endTime, setEndTime] = useState(0)
+  const [remainingTime, setRemainingTime] = useState(0)
+  const [totalEth, setTotalEth] = useState(0)
+  const [claimableAmount, setClaimableAmount] = useState(0)
+  const [tokenBalance, setTokenBalance] = useState(0)
+  const [buyEthAmount, setBuyEthAmount] = useState("0")
 
   let presaleContract;
   let tokenContract;
@@ -54,7 +55,7 @@ const Presale = () => {
 
   const getTotalEthRaised = async () => {
     presaleContract
-      .totalEthRaised()
+      .totalEth()
       .call()
       .then((res) => {
         console.log("res", res);
@@ -62,13 +63,13 @@ const Presale = () => {
       });
   };
 
-  const getTokenBalances = async () => {
+  const getClaimableAmount = async () => {
     presaleContract
       .tokenBalances(account)
       .call()
       .then((res) => {
         console.log("res", res);
-        setTokenBalances(res);
+        setClaimableAmount(res);
       });
   };
 
@@ -94,14 +95,86 @@ const Presale = () => {
     setRemainingTime(`${days}d ${hours}h ${minutes}m ${seconds}s`);
   };
 
-  useEffect(() => {
+  const buyTokens = async () => {
+
+    /*
+    console.log("formatEther(buyEthAmount)", parseEther(buyEthAmount).toString());
+    console.log("formatEther(0)", formatEther(0));
+
+    // check if buyEthAmount is more than 0
+    if (parseEther(buyEthAmount).toString() > "0") {
+      toast.error("Eth amount should be more than 0");
+      return;
+    }
+    */
+
+    // check if user have enough eth
+    const ethBalance = await library.eth.getBalance(account);
+    if (formatEther(ethBalance) < buyEthAmount) {
+      toast.error("Insufficient ETH balance");
+      return;
+    }
+
+    presaleContract
+      .buyTokens()
+      .send({ from: account, value: parseEther(buyEthAmount).toString() })
+      .then(async (res) => {
+        console.log("res", res);
+        toast.success("Tokens bought successfully");
+        await updatePresaleStatus();
+      })
+      .catch((err) => {
+        console.log("err", err);
+        toast.error(err.message);
+      });
+  };
+
+  const getMaxEthContribution = async () => {
+    return presaleContract
+      .maxEthContribution()
+      .call()
+      .then((res) => {
+        console.log("res", res);
+        return res;
+      });
+  };
+
+
+  const inputOnChange = (e) => {
+    console.log(e.target.value);
+    setBuyEthAmount(e.target.value);
+  };
+
+  const setMax = async () => {
+
+    const maxEthContribution = await getMaxEthContribution();
+    console.log("maxEthContribution", maxEthContribution);
+
+    const claimableAmount = await presaleContract
+      .ethContributed(account)
+      .call()
+      .then((res) => {
+        console.log("res", res);
+        return res;
+      });
+
+    const maxEth = (maxEthContribution - claimableAmount);
+    console.log("maxEth", maxEth);
+    setBuyEthAmount(formatEther(maxEth.toString()));
+  };
+
+  const updatePresaleStatus = async () => {
     if (account && library) {
       getTokensPerEth();
       getEndTime();
       getTotalEthRaised();
-      getTokenBalances();
+      getClaimableAmount();
       getTokenBalance();
     }
+  };
+
+  useEffect(() => {
+    updatePresaleStatus();
   }, [account, library]);
 
   return (
@@ -116,14 +189,12 @@ const Presale = () => {
               <div className='presale-card-left-top-1-title'>
                 Total ETH Raised
               </div>
-              <div className='presale-card-left-top-1-content'>
-                {totalEth} ETH
-              </div>
+              <div className='presale-card-left-top-1-content'>{formatEther(totalEth)} ETH</div>
             </div>
             <div className='presale-card-left-top-2'>
               <div className='presale-card-left-top-2-title'>Pending Honey</div>
               <div className='presale-card-left-top-2-content'>
-                {tokenBalances}
+                {formatEther(claimableAmount)}
               </div>
             </div>
           </div>
@@ -159,12 +230,12 @@ const Presale = () => {
           </div>
           <div className='presale-card-right-bottom'>
             <div className='presale-card-right-bottom-form'>
-              <input className='presale-card-right-bottom-input' />
-              <button className='presale-card-right-bottom-max'>MAX</button>
+              <input className='presale-card-right-bottom-input' type="number" value={buyEthAmount} onChange={inputOnChange} />
+              <button className='presale-card-right-bottom-max' onClick={setMax}>MAX</button>
             </div>
 
             <div>
-              <button className='presale-card-right-bottom-button'>
+              <button className='presale-card-right-bottom-button' onClick={buyTokens}>
                 Contribute
               </button>
             </div>
