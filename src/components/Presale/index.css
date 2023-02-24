@@ -118,6 +118,7 @@
   font-size: 16px;
   line-height: 12px;
   color: rgba(20, 26, 47, 0.5);
+  border: none;
 }
 .presale-card-right {
   min-width: 45%;
@@ -180,9 +181,11 @@
   background: #ffffff;
   border: 1px solid #ef798a;
   border-radius: 10px;
+  border: none;
 }
 
 .presale-card-right-bottom-max {
+  border: none;
   font-family: "Mitr";
   font-style: normal;
   font-weight: 700;
@@ -199,6 +202,13 @@
 }
 
 .presale-card-right-bottom-button {
+  font-family: "Mitr";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  color: #2a2a58;
+  border: none;
   background: #f78406;
   border-radius: 50px;
   min-width: 100%;
@@ -362,6 +372,8 @@
   }
 
   .presale-card-right-bottom-input {
+    border: none;
+
     box-sizing: border-box;
     margin-top: 10px;
     width: 100%;
@@ -375,6 +387,8 @@
 
   .presale-card-right-bottom-max {
     font-family: "Mitr";
+    border: none;
+
     font-style: normal;
     font-weight: 700;
     font-size: 18px;
