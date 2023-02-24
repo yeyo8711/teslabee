@@ -183,6 +183,7 @@
   border: 1px solid #ef798a;
   border-radius: 10px;
   border: none;
+  text-align: center;
 }
 
 .presale-card-right-bottom-max {
@@ -383,6 +384,7 @@
     background: #ffffff;
     border: 1px solid #ef798a;
     border-radius: 10px;
+    text-align: center;
   }
 
   .presale-card-right-bottom-max {
