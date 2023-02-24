@@ -9,6 +9,6 @@ body {
 }
 @media screen and (max-width: 780px) {
   body {
-    width: 90vw;
+    width: 100vw;
   }
 }

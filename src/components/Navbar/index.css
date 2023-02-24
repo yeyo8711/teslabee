@@ -22,6 +22,10 @@
   margin: 10px;
 }
 
+.navbar-btn:hover {
+  background: #f7d685;
+}
+
 @media screen and (max-width: 780px) {
   .navbar-main {
     display: flex;

@@ -31,7 +31,7 @@
 }
 .presale-card-left {
   min-width: 45%;
-  min-height: 80%;
+  min-height: 90%;
 }
 .presale-card-left-top {
   min-width: 40%;
@@ -120,8 +120,13 @@
   color: rgba(20, 26, 47, 0.5);
   border: none;
 }
+.claim-honey:hover {
+  background: linear-gradient(0deg, #ec8004, #e27901), #ffffff;
+}
 .presale-card-right {
+  margin-top: 10px;
   min-width: 45%;
+  max-height: 78%;
   padding: 25px;
   background: #deb597;
   border-radius: 10px;
@@ -172,6 +177,7 @@
 }
 
 .presale-card-right-bottom-input {
+  font-family: "Mitr";
   outline: none;
   box-sizing: border-box;
   margin-top: 10px;
@@ -202,6 +208,9 @@
   width: 102px;
   height: 50px;
 }
+.presale-card-right-bottom-max:hover {
+  background: linear-gradient(0deg, #ec8004, #e27901), #ffffff;
+}
 
 .presale-card-right-bottom-button {
   font-family: "Mitr";
@@ -215,6 +224,9 @@
   border-radius: 50px;
   min-width: 100%;
   min-height: 48px;
+}
+.presale-card-right-bottom-button:hover {
+  background: linear-gradient(0deg, #ec8004, #e27901), #ffffff;
 }
 @media screen and (max-width: 780px) {
   .presale-main {
