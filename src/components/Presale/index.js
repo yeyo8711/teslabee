@@ -7,12 +7,10 @@ import TokenAbi from "../../blockchain/abi/TokenAbi.json";
 //import { TokenSale } from "../../blockchain/address";
 import { formatEther, parseEther } from "ethers";
 
-
-const TokenSaleAddress = "0x68030893740F1abD7716d030816588528B6b5225"
-const TokenAddress = "0xddcd1D04501f145a25160F85734Add4BBa521c55"
+const TokenSaleAddress = "0x68030893740F1abD7716d030816588528B6b5225";
+const TokenAddress = "0xddcd1D04501f145a25160F85734Add4BBa521c55";
 
 const Presale = () => {
-
   const { active, account, library, activate, deactivate, chainId } =
     useWeb3React();
 
@@ -28,15 +26,10 @@ const Presale = () => {
   let tokenContract;
 
   if (account && library) {
-    presaleContract = new library.eth.Contract(
-      TokenSaleAbi,
-      TokenSaleAddress
-    ).methods;
+    presaleContract = new library.eth.Contract(TokenSaleAbi, TokenSaleAddress)
+      .methods;
 
-    tokenContract = new library.eth.Contract(
-      TokenAbi,
-      TokenAddress
-    ).methods;
+    tokenContract = new library.eth.Contract(TokenAbi, TokenAddress).methods;
   }
 
   const getTokensPerEth = async () => {
@@ -88,7 +81,7 @@ const Presale = () => {
         console.log("res", res);
         setTokenBalance(res);
       });
-  }
+  };
 
   const calculateRemainingTime = () => {
     const now = new Date().getTime();
@@ -184,7 +177,6 @@ const Presale = () => {
     updatePresaleStatus();
   }, [account, library]);
 
-
   return (
     <div className='presale-main'>
       <div className='presale-title'>
@@ -210,11 +202,15 @@ const Presale = () => {
           <div className='presale-card-left-top'>
             <div className='presale-card-left-top-1'>
               <div className='presale-card-left-top-1-title'>Ends In</div>
-              <div className='presale-card-left-top-1-content'>{remainingTime}</div>
+              <div className='presale-card-left-top-1-content'>
+                {remainingTime}
+              </div>
             </div>
             <div className='presale-card-left-top-2'>
               <div className='presale-card-left-top-2-title'>Honey Per ETH</div>
-              <div className='presale-card-left-top-2-content'>{tokensPerEth}</div>
+              <div className='presale-card-left-top-2-content'>
+                {tokensPerEth}
+              </div>
             </div>
           </div>
           <div className='presale-card-left-bottom'></div>
@@ -229,7 +225,7 @@ const Presale = () => {
             </div>
             <div className='presale-card-right-top-balance'>
               <div>Token Balance</div>
-              <div>{formatEther(tokenBalance, 'ether')}</div>
+              <div>{formatEther(tokenBalance, "ether")}</div>
             </div>
           </div>
           <div className='presale-card-right-bottom'>
@@ -246,7 +242,7 @@ const Presale = () => {
           </div>
         </div>
       </div>
-      <Toaster position="top-right" reverseOrder={false} />
+      <Toaster position='top-right' reverseOrder={false} />
     </div>
   );
 };
