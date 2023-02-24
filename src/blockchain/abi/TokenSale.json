@@ -116,6 +116,35 @@
 		"type": "function"
 	},
 	{
+		"inputs": [],
+		"name": "endTime",
+		"outputs": [
+			{ "internalType": "uint256", "name": "", "type": "uint256" }
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{ "internalType": "address", "name": "", "type": "address" }
+		],
+		"name": "ethContributed",
+		"outputs": [
+			{ "internalType": "uint256", "name": "", "type": "uint256" }
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getTokensPerEth",
+		"outputs": [
+			{ "internalType": "uint256", "name": "", "type": "uint256" }
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [
 			{ "internalType": "address", "name": "", "type": "address" }
 		],
@@ -134,6 +163,15 @@
 	{
 		"inputs": [],
 		"name": "maxBuy",
+		"outputs": [
+			{ "internalType": "uint256", "name": "", "type": "uint256" }
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "maxEthContribution",
 		"outputs": [
 			{ "internalType": "uint256", "name": "", "type": "uint256" }
 		],
@@ -167,6 +205,15 @@
 	},
 	{
 		"inputs": [
+			{ "internalType": "uint256", "name": "_endTime", "type": "uint256" }
+		],
+		"name": "setEndTime",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
 			{ "internalType": "bool", "name": "status", "type": "bool" }
 		],
 		"name": "setIsWhitelistEnabled",
@@ -179,6 +226,19 @@
 			{ "internalType": "uint256", "name": "_maxBuy", "type": "uint256" }
 		],
 		"name": "setMaxBuy",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_maxEthContribution",
+				"type": "uint256"
+			}
+		],
+		"name": "setMaxEthContribution",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -241,6 +301,15 @@
 	{
 		"inputs": [],
 		"name": "tokenPrice",
+		"outputs": [
+			{ "internalType": "uint256", "name": "", "type": "uint256" }
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "totalEth",
 		"outputs": [
 			{ "internalType": "uint256", "name": "", "type": "uint256" }
 		],
