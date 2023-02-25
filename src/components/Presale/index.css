@@ -119,6 +119,7 @@
   line-height: 12px;
   color: rgba(20, 26, 47, 0.5);
   border: none;
+  cursor: pointer;
 }
 .claim-honey:hover {
   background: linear-gradient(0deg, #ec8004, #e27901), #ffffff;
@@ -224,6 +225,7 @@
   border-radius: 50px;
   min-width: 100%;
   min-height: 48px;
+  cursor: pointer;
 }
 .presale-card-right-bottom-button:hover {
   background: linear-gradient(0deg, #ec8004, #e27901), #ffffff;
@@ -415,6 +417,7 @@
     z-index: 1;
     width: 102px;
     height: 50px;
+    cursor: pointer;
   }
 
   .presale-card-right-bottom-button {

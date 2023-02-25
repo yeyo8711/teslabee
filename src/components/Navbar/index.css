@@ -19,7 +19,8 @@
   width: 80px;
   text-align: center;
   justify-content: center;
-  margin: 10px;
+  margin: 20px;
+  cursor: pointer;
 }
 
 .navbar-btn:hover {

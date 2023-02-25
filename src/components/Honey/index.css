@@ -56,6 +56,7 @@
   margin: 20px;
   justify-content: space-around;
 }
+
 .honey-btn {
   font-family: "Mitr", sans-serif;
   font-style: normal;
@@ -64,14 +65,23 @@
   line-height: 12px;
   padding: 18px 23.875px 18px 24px;
   color: #1b2236;
-  background: rgba(255, 255, 255, 0.002);
+  background: #ffd166;
   box-shadow: inset 0px 0px 0px 2px #ffd166;
   border-radius: 32px;
+  cursor: pointer;
 }
+
+.honey-btn:hover {
+  background: #ffbd23;
+  box-shadow: inset 0px 0px 0px 2px #ffbd23;
+}
+
+
 .honey-gethoney-btn-holder {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  cursor: pointer;
 }
 .honey-gethoney-btn {
   border: none;
@@ -86,6 +96,7 @@
   padding: 8px;
   color: #2a2a58;
   background: linear-gradient(0deg, #f68402, #f68402), #ffffff;
+  cursor: pointer;
 }
 .honey-gethoney-btn:hover {
   background: linear-gradient(0deg, #ec8004, #e27901), #ffffff;
